@@ -12,7 +12,6 @@ def post_new_client():
 def get_auth_token():
     create_user_res = post_new_client()
     response_json = create_user_res.json()
-    print(response_json)
 
     if "authToken" in response_json:
         configuration.AUTH_TOKEN = response_json["authToken"]

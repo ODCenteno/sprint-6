@@ -32,7 +32,7 @@ git clone git@github.com:ODCenteno/sprint-6.git
 ```bash
 pip3 install pytest requests
 ```
-3. Turn on the server and paste the host URL in the configuration.py archive
+3. Turn on the server and paste the host URL in the configuration.py archive on `URL_SERVICE`
 4. Run all tests in terminal
 ```bash
 pytest
@@ -40,36 +40,51 @@ pytest
 
 ## Checklist
 ### Feature: Creating a kit with valid Name Length
-__Scenario__: Creating a kit with a valid minimum name length (1 character)
+__Scenario 1__: Creating a kit with a valid minimum name length (1 character)
 - Given the minimum required characters for a valid name, 
 When a user creates a kit, then the response code should be 201.
 
-__Scenario__: Creating a kit with a valid maximum length (51 characters)
+__Scenario 2__: Creating a kit with a valid maximum length (511 characters)
 - Given the maximum allowed characters for a valid name, when a user creates a kit, then
 the response code should be 201.
 
-__Scenario__: Creating a kit using special characters 
-- Given the characters allowed for a valid name, when the user entered special characters,
-then the response code should be 201.
-
-__Scenario__: Use of spaces is allowed
-- Given the characters allowed for a valid name, when the user introduced spaces,
-then the response code should be 201.
-
-__Scenario__: Creating a kit with invalid name length (0 characters)
+__Scenario 3__: Creating a kit with invalid name length (0 characters)
 - Given the minimum required characters for a valid name, when a user
 creates a kit with a 0 character name, then the response code should be 400.
 
-__Scenario__: Creating a kit with invalid name length (52 characters)
+__Scenario 4__: Creating a kit with invalid name length (512 characters)
 - Given the maximum allowed characters for a valid name, when a user creates a kit with name of 52 characters, 
 then the response code should be 400.
 
-__Scenario__: The request params aren't sent
+__Scenario 5__: Creating a kit using special characters 
+- Given the characters allowed for a valid name, when the user entered special characters,
+then the response code should be 201.
+
+__Scenario 6__: Use of spaces is allowed
+- Given the characters allowed for a valid name, when the user introduced spaces,
+then the response code should be 201.
+
+__Scenario 7__: Use of numbers as strings is allowed
+- Given the characters allowed for a valid name, when the user introduced numbers as string,
+then the response code should be 201.
+
+__Scenario 8__: The request params aren't sent
 - Given the request format, when the user doesn't send the correct data in the request body, then 
 a status code 400 should be returned.
 
-__Scenario__: An incorrect data type is sent in the request
+__Scenario 9__: An incorrect data type is sent in the request
 - Given the request format, when a user sent a number instead of string, 
 then the response code is 400 and the kit is not created.
 
-
+## Test Results
+| Scenario | Result | Expected Code | Actual Code |
+|:--------:|:---:|:-------------:|:-----------:|
+|    1     | PASSED |      201      |     201     |
+|    2     | PASSED |      201      |     201     |
+|    3     | FAILED |      400      |     201     |
+|    4     | FAILED |      400      |     201     |
+|    5     | PASSED |      201      |     201     |
+|    6     | PASSED |      201      |     201     |
+|    7     | PASSED |      201      |     201     |
+|    8     | FAILED |      400      |     500     |
+|    9     | FAILED |      400      |     201     |
