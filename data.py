@@ -1,3 +1,10 @@
+user_info = {
+    "firstName": "Max",
+    "phone": "+10005553535",
+    "address": "8042 Lancaster Ave.Hamburg, NY"
+}
+
+
 data = {
     "test_1": {
         "kit_body": {"name": "a"},
@@ -28,8 +35,4 @@ data = {
     }
 }
 
-user_info = {
-    "firstName": "Max",
-    "phone": "+10005553535",
-    "address": "8042 Lancaster Ave.Hamburg, NY"
-}
+
