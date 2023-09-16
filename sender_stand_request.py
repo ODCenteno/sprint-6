@@ -17,7 +17,7 @@ def get_auth_token():
             create_user_res = post_new_client()
             response_json = create_user_res.json()
             configuration.AUTH_TOKEN = response_json["authToken"]
-            return response_json["authToken"]
+            return configuration.AUTH_TOKEN
 
 
 headers = {
