@@ -11,13 +11,13 @@ def post_new_client():
 
 
 def get_auth_token():
-        create_user_res = post_new_client()
-        response_json = create_user_res.json()
-
-        if "authToken" in response_json:
-            return response_json["authToken"]
+        if configuration.AUTH_TOKEN != None:
+            return configuration.AUTH_TOKEN
         else:
-            return None
+            create_user_res = post_new_client()
+            response_json = create_user_res.json()
+            configuration.AUTH_TOKEN = response_json["authToken"]
+            return response_json["authToken"]
 
 
 headers = {
